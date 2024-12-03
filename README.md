@@ -46,8 +46,10 @@ sqlite (standalone php)
     );
     $settings['hash_salt'] = 'iLJgoqSV_g-6-NbwFtt9RDvB2Kr3VZwZRbXRVzwfZIsKMVZ_Uuf5MawmAxZy0copcCCqFrMbIA';
     $settings['config_sync_directory'] = 'sites/default/files/config_YKOUV2Ny2penQuPay3DP7eq_-nG4hDaT9ttU_wskyl6AdQ4BpiQNaUtxWf3KnQdPuruwTN0LzA/sync';
+Running site (Insure current dir is inside webroot)
+`php -S localhost:8888 .ht.router.php`
 
-Running drush
+Running drush (Insure current dir is inside webroot)
 ``../vendor/bin/drush``
 
 Installing recipe via Drupal script (Insure current dir is inside webroot)
