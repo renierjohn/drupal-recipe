@@ -12,19 +12,25 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+         "type": "vcs",
+         "url": "https://gitlab.com/kevinquillen/drupal-base"
         }
     ],
     "require": {
         "composer/installers": "^2.0",
-        "drupal/core-composer-scaffold": "^11.0",
-        "drupal/core-project-message": "^11.0",
-        "drupal/core-recommended": "^11.0",
-        "drush/drush": "^13.3"
+        "drupal/core-composer-scaffold": "^10.3",
+        "drupal/core-project-message": "^10.3",
+        "drupal/core-recommended": "^10.3",
+        "drush/drush": "^13.3",
+        "kevinquillen/drupal-base": "^1.0@alpha",
+        "oomphinc/composer-installers-extender": "2.0.1"
     },
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "allow-plugins": {
@@ -33,7 +39,8 @@
             "drupal/core-project-message": true,
             "phpstan/extension-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "oomphinc/composer-installers-extender": true
         },
         "sort-packages": true
     },
@@ -70,8 +77,10 @@
             ],
             "web/themes/custom/{$name}": [
                 "type:drupal-custom-theme"
-            ]
+            ],
+            "recipes/{$name}": ["type:drupal-recipe"]
         },
+        "installer-types": ["drupal-recipe"],
         "drupal-core-project-message": {
             "include-keys": [
                 "homepage",
