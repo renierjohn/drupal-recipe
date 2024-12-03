@@ -46,20 +46,39 @@ sqlite (standalone php)
     );
     $settings['hash_salt'] = 'iLJgoqSV_g-6-NbwFtt9RDvB2Kr3VZwZRbXRVzwfZIsKMVZ_Uuf5MawmAxZy0copcCCqFrMbIA';
     $settings['config_sync_directory'] = 'sites/default/files/config_YKOUV2Ny2penQuPay3DP7eq_-nG4hDaT9ttU_wskyl6AdQ4BpiQNaUtxWf3KnQdPuruwTN0LzA/sync';
+Running site (Insure current dir is inside webroot)
+`php -S localhost:8888 .ht.router.php`
 
-Running drush
-`../vendor/bin/drush`
+Running drush (Insure current dir is inside webroot)
+``../vendor/bin/drush``
 
 Installing recipe via Drupal script (Insure current dir is inside webroot)
-`../vendor/bin/drush si minimal && php core/scripts/drupal recipe core/recipes/standard -v`
+```../vendor/bin/drush si minimal && php core/scripts/drupal recipe core/recipes/standard -v```
 
 Installing recipe via Drush command (Insure current dir is inside webroot)
-`../vendor/bin/drush si minimal && ../vendor/bin/drush recipe core/recipes/standard`
+````../vendor/bin/drush si minimal && ../vendor/bin/drush recipe core/recipes/standard````
 
 Drop DB
-`../vendor/bin/drush sql:drop -y`
+``../vendor/bin/drush sql:drop -y``
 
 
+Composer based recipe guide
+https://git.drupalcode.org/project/distributions_recipes/-/blob/1.0.x/docs/getting_started_d11.md
 
 Installing composer plugin for Drupal Recipe
-`composer require oomphinc/composer-installers-extender`
+``composer require oomphinc/composer-installers-extender``
+
+Add VCS for kevinquillen/drupal-base recipe
+  `{
+     "type": "vcs",
+     "url": "https://gitlab.com/kevinquillen/drupal-base"
+    }`
+
+Set installer path for recipe
+`  "recipes/{$name}": ["type:drupal-recipe"]`
+
+      `  "installer-types": ["drupal-recipe"],`
+
+
+Install drupal-base recipe
+`../vendor/bin/drush si minimal -y && ../vendor/bin/drush recipe ../recipes/drupal-base`
