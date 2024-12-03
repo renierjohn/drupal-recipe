@@ -1,0 +1,29 @@
+name: 'Custom Recipe'
+description: 'A recipe tailored to best practices for kickstarting a new Drupal 10 project.'
+type: 'Site'
+
+install:
+  - bootstrap
+
+config:
+  import:
+    bootstrap:
+      - bootstrap.settings
+    node:
+      - core.entity_form_display.node.blog.default
+      - core.entity_view_display.node.blog.default
+      - core.entity_view_display.node.blog.teaser
+      - field.field.node.blog.body
+      - field.field.node.blog.field_image
+      - field.storage.node.field_image
+      - node.type.blog
+  actions:
+    system.site:
+      simple_config_update:
+        page:
+          front: /node/1
+        name: 'Custom Recipe Site'
+    system.theme:
+      simple_config_update:
+        admin: gin
+        default: bootstrap

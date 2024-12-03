@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 09c4579e-7ce2-4b61-a20f-aa0e1ad22128
+  bundle: image
+  default_langcode: en
+  depends:
+    9bba3177-4b93-4950-bf1e-856503e29acb: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Screenshot 2024-12-03 at 6.26.11 PM.png'
+  created:
+    -
+      value: 1733221583
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_media_image:
+    -
+      entity: 9bba3177-4b93-4950-bf1e-856503e29acb
+      alt: drupal
+      title: ''
+      width: 898
+      height: 620
