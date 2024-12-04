@@ -4,10 +4,11 @@ https://www.drupal.org/docs/extending-drupal/drupal-recipes
 Repo Drupal Base Recipe
 https://gitlab.com/kevinquillen/drupal-base
 
-
-git clone 
+Clone Repo
+`git clone git@github.com:renierjohn/drupal-recipe.git`
 
 settings.php (Docksal)
+create settings.php
 ````
 <?php
 
@@ -36,6 +37,12 @@ Installing recipe via drush
 sqlite (standalone php)
 -rw-r--r--  .ht.sqlite
 -r--r--r--  settings.php
+
+Checkout to base
+`git checkout base`
+`composer install
+`
+create settings.php
     
     $databases['default']['default'] = array (
       'database' => 'sites/default/.ht.sqlite',
@@ -79,6 +86,16 @@ Set installer path for recipe
 
       `  "installer-types": ["drupal-recipe"],`
 
+Checkout to feature-a branch to see the new packages on composer.json
+`git checkout feature-a`
+`composer install`
 
 Install drupal-base recipe
 `../vendor/bin/drush si minimal -y && ../vendor/bin/drush recipe ../recipes/drupal-base`
+
+
+Checkout to feature-b branch to see the custom-recipe
+`git checkout feature-b`
+
+Install custom-recipe
+`../vendor/bin/drush recipe ../recipes/custom-recipe`
