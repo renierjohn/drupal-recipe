@@ -1,12 +1,18 @@
+
 Guide for installing Recipe
 https://www.drupal.org/docs/extending-drupal/drupal-recipes
 
 Repo Drupal Base Recipe
 https://gitlab.com/kevinquillen/drupal-base
 
+Composer based recipe guide
+https://git.drupalcode.org/project/distributions_recipes/-/blob/1.0.x/docs/getting_started_d11.md
+
 Clone Repo
 `git clone git@github.com:renierjohn/drupal-recipe.git`
 
+##
+**For Docksal** 
 settings.php (Docksal)
 create settings.php
 ````
@@ -28,12 +34,17 @@ $settings['hash_salt'] = 'iLJgoqSV_g-6-NbwFtt9RDvB2Kr3VZwZRbXRVzwfZIsKMVZ_Uuf5Ma
 $settings['config_sync_directory'] = 'sites/default/files/config_dB3xAjgpxxUMak2CYkf3dtpJ19NpcaOizV32qbVLFKSKzyQcE2uJ0jJfWGzFxZU9NevUAcGP7w/sync';
 ```
 ````
-Installing recipe via drush
-`fin drush recipe core/recipes/standard`
+Install recipe via drush command from drupal core
 
+    fin drush si minimal
+    fin drush recipe core/recipes/standard
 
+Install recipe via drush command from other recipe `kevinquillen/drupal-base`
 
-
+    fin drush si minimal
+    fin drush recipe ../recipes/drupal-base
+##
+**For standalone php**
 sqlite (standalone php)
 -rw-r--r--  .ht.sqlite
 -r--r--r--  settings.php
@@ -53,26 +64,29 @@ create settings.php
     );
     $settings['hash_salt'] = 'iLJgoqSV_g-6-NbwFtt9RDvB2Kr3VZwZRbXRVzwfZIsKMVZ_Uuf5MawmAxZy0copcCCqFrMbIA';
     $settings['config_sync_directory'] = 'sites/default/files/config_YKOUV2Ny2penQuPay3DP7eq_-nG4hDaT9ttU_wskyl6AdQ4BpiQNaUtxWf3KnQdPuruwTN0LzA/sync';
-Running site (Insure current dir is inside webroot)
+
+ Running site (Insure current dir is inside webroot)
 `php -S localhost:8888 .ht.router.php`
 
 Running drush (Insure current dir is inside webroot)
 ``../vendor/bin/drush``
 
-Installing recipe via Drupal script (Insure current dir is inside webroot)
-```../vendor/bin/drush si minimal && php core/scripts/drupal recipe core/recipes/standard -v```
-
-Installing recipe via Drush command (Insure current dir is inside webroot)
-````../vendor/bin/drush si minimal && ../vendor/bin/drush recipe core/recipes/standard````
-
-Drop DB
+How to Drop DB:
 ``../vendor/bin/drush sql:drop -y``
 
+##
+**Example 1 - Install Recipe from Drupal Core** 
+2 methods to install recipe
 
-Composer based recipe guide
-https://git.drupalcode.org/project/distributions_recipes/-/blob/1.0.x/docs/getting_started_d11.md
+A.) Installing recipe via Drupal script (Insure current dir is inside webroot)
+```../vendor/bin/drush si minimal && php core/scripts/drupal recipe core/recipes/standard -v```
 
-Installing composer plugin for Drupal Recipe
+B.) Installing recipe via Drush command (Insure current dir is inside webroot)
+````../vendor/bin/drush si minimal && ../vendor/bin/drush recipe core/recipes/standard````
+
+##
+**Example 2 - Install Recipe from other repo kevinquillen/drupal-base** 
+Install composer plugin for Drupal Recipe:
 ``composer require oomphinc/composer-installers-extender``
 
 Add VCS for kevinquillen/drupal-base recipe
@@ -83,19 +97,24 @@ Add VCS for kevinquillen/drupal-base recipe
 
 Set installer path for recipe
 `  "recipes/{$name}": ["type:drupal-recipe"]`
+&
 
-      `  "installer-types": ["drupal-recipe"],`
+    "installer-types": ["drupal-recipe"],
+    
+Install drupal-base recipe:
+ - `composer require kevinquillen/drupal-base`
 
-Checkout to feature-a branch to see the new packages on composer.json
-`git checkout feature-a`
-`composer install`
+Checkout to `feature-a` branch to see the new packages on composer.json
+1. `git checkout feature-a`
+2. `composer install`
+3. Install drupal-base recipe
+ `../vendor/bin/drush si minimal -y && ../vendor/bin/drush recipe ../recipes/drupal-base`
 
-Install drupal-base recipe
-`../vendor/bin/drush si minimal -y && ../vendor/bin/drush recipe ../recipes/drupal-base`
-
-
+##
+**Example 3 - Install Custom ** 
+Pre defined custom recipe in `feature-b` branch
 Checkout to feature-b branch to see the custom-recipe
-`git checkout feature-b`
+1. `git checkout feature-b`
 
-Install custom-recipe
+2. Install custom-recipe (Assuming feature-a already installed)
 `../vendor/bin/drush recipe ../recipes/custom-recipe`
